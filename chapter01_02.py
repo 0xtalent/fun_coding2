@@ -4,6 +4,7 @@
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+import time
 
 chromedriver = './webdriver/chrome/chromedriver.exe'
 driver = webdriver.Chrome(chromedriver)
@@ -18,3 +19,14 @@ elem.send_keys("python")
 
 # 엔터 입력
 elem.send_keys(Keys.RETURN)
+
+# 명시적으로 일정 시간을 기다릴 수 있음
+time.sleep(2)
+
+h3s = driver.find_elements_by_tag_name("h3")
+for h3 in h3s:
+    print(h3.text)
+
+# 브라우저 종료
+driver.quit()
+
