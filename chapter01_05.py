@@ -1,5 +1,5 @@
 # Chapter 01 브라우저 제어해서 크롤링 하기
-# chapter 01-4 브라우저를 제어해서 크롤링 하기 - Headless Chrome과 PhantomJS 익히기
+# chapter 01-5 브라우저를 제어해서 크롤링 하기 - Headless Chrome과 PhantomJS 익히기
 # 2019-12-15 18:21
 
 from selenium import webdriver
@@ -13,6 +13,11 @@ chromedriver = './webdriver/chrome/chromedriver.exe'
 
 headless_options = webdriver.ChromeOptions()
 headless_options.add_argument('headless')
+headless_options.add_argument('window-size=1920x1080')
+headless_options.add_argument('disable-gpu')
+headless_options.add_argument('lang=ko_KR')
+
+
 driver = webdriver.Chrome(chromedriver, options=headless_options)
 
 
