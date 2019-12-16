@@ -27,4 +27,8 @@ while loop and count < 10:
     except TimeoutException:
         loop = False
 
+comment_box = driver.find_element_by_css_selector('#alex-area > div > div > div > div.cmt_box > ul.list_comment')
+comment_list = comment_box.find_elements_by_css_selector('li')
+for num, comment_item in enumerate(comment_list):
+    print("[" + str(num) + "]", comment_item.find_element_by_css_selector('div p').text)
 driver.quit()
