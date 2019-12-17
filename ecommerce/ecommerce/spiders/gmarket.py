@@ -1,0 +1,11 @@
+# -*- coding: utf-8 -*-
+import scrapy
+
+
+class GmarketSpider(scrapy.Spider):
+    name = 'gmarket'
+    allowed_domains = ['http://www.gmarket.co.kr/']
+    start_urls = ['http://http://www.gmarket.co.kr//']
+
+    def parse(self, response):
+        print(response.text)
