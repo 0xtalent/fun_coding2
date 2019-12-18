@@ -10,7 +10,10 @@ class GmarketSpider(scrapy.Spider):
 
     def parse(self, response):
         titles = response.css('div.best-list li > a::text').getall()
-        for title in titles:
+        prices = response.css('div.best-list ul li div.item_price div.s-price strong span::text').getall()
+
+        for num, title in enumerate(titles):
             doc = EcommerceItem()
             doc['title'] = title
+            doc['price'] = prices[num]
             yield doc
