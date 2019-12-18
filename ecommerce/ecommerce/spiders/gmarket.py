@@ -15,5 +15,5 @@ class GmarketSpider(scrapy.Spider):
         for num, title in enumerate(titles):
             doc = EcommerceItem()
             doc['title'] = title
-            doc['price'] = prices[num]
+            doc['price'] = prices[num].strip().replace("원", "").replace(",", "")
             yield doc
