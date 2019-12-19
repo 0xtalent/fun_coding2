@@ -19,4 +19,9 @@ class GmarketCategoryAllSpider(scrapy.Spider):
         print("parse_maincategory", response.meta['maincategory_name'])
 
         best_items = response.css('div.best-list')
-        best_items.css('li')
+        for index, item in enumerate(best_items[1].css('li')):
+            title = item.css('a.itemname::text').get()
+            ori_price = item.css('div.o-price::text').get()
+            dis_price = item.css('div.s-price strong span span::text').get()
+            discount_percent = item.css('div.s-price em::text').get()
+        print(title, ori_price, dis_price, discount_percent)
