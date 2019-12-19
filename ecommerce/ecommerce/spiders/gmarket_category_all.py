@@ -20,8 +20,20 @@ class GmarketCategoryAllSpider(scrapy.Spider):
 
         best_items = response.css('div.best-list')
         for index, item in enumerate(best_items[1].css('li')):
+            ranking = index + 1
             title = item.css('a.itemname::text').get()
             ori_price = item.css('div.o-price::text').get()
             dis_price = item.css('div.s-price strong span span::text').get()
             discount_percent = item.css('div.s-price em::text').get()
-        print(title, ori_price, dis_price, discount_percent)
+
+            if ori_price == None:
+                ori_price = dis_price
+            ori_price = ori_price.replace(",", "").replace("원", "")
+            dis_price = ori_price.replace(",", "").replace("원", "")
+
+            if discount_percent == None:
+                discount_percent = '0'
+            else:
+                discount_percent = discount_percent.replace("%", "")
+
+            print(ranking, title, ori_price, dis_price, discount_percent)
